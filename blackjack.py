@@ -16,13 +16,13 @@ def main():
             print("Ойын үшін рахмет!")
             sys.exit()
         print('Сіздің қаражатыңыз:', aqsha)
-        tigis = tigistiQabyldau(aqsha)
+        stavka = stavkanyQabyldau(aqsha)
 
-        koloda = kalodaAlu()
+        koloda = kartaKolodasy()
         dilerQoly = [koloda.pop(), koloda.pop()]
         oiynshyQoly = [koloda.pop(), koloda.pop()]
 
-        print('Сіз тіккен ақша:', tigis)
+        print('Сіз тіккен ақша:', stavka)
         while True:
             qoldyKorsetu(oiynshyQoly, dilerQoly, False)
             print()
@@ -30,18 +30,18 @@ def main():
             if qolUpaiynAlu(oiynshyQoly) > 21:
                 break
 
-            juris = juristiAlu(oiynshyQoly, aqsha - tigis)
+            juris = juristiAlu(oiynshyQoly, aqsha - stavka)
 
             if juris == 'D':
-                qosyumshaTigis = tigistiQabyldau(min(tigis, (aqsha - tigis)))
-                tigis += qosyumshaTigis
-                print(f'Tigis {tigis}-ke ulgaityldy')
-                print('Tigis:', tigis)
+                qosyumshaTigis = stavkanyQabyldau(min(stavka, (aqsha - stavka)))
+                stavka += qosyumshaTigis
+                print(f'Тігіс {stavka} ұлғайтылады')
+                print('Тігіс:', stavka)
 
             if juris in ('H', 'D'):
                 janaKarta = koloda.pop()
                 rank, mast = janaKarta
-                print(f'Siz algan karta {rank} {mast}')
+                print(f'Сіз алған карта {rank} {mast}')
                 oiynshyQoly.append(janaKarta)
 
                 if qolUpaiynAlu(oiynshyQoly) > 21:
@@ -52,7 +52,7 @@ def main():
 
         if qolUpaiynAlu(oiynshyQoly) <= 21:
             while qolUpaiynAlu(dilerQoly) < 17:
-                print('Diler karta aldy ...')
+                print('Дилер карта алды ...')
                 dilerQoly.append(koloda.pop())
                 qoldyKorsetu(oiynshyQoly, dilerQoly, False)
 
@@ -67,38 +67,38 @@ def main():
         dilerUpaiy = qolUpaiynAlu(dilerQoly)
 
         if dilerUpaiy > 21:
-            print(f'Diler asyp ketti. Siz {tigis}$ utyp aldynyz')
-            aqsha += tigis
+            print(f'Дилер асып кетті. Сіз {stavka}$ ұтып алдыңыз')
+            aqsha += stavka
         elif (oiynshyUpaiy > 21) or (oiynshyUpaiy < dilerUpaiy):
-            print('Siz utyldynyz')
-            aqsha -= tigis
+            print('Сіз ұтылдыңыз.')
+            aqsha -= stavka
         elif oiynshyUpaiy > dilerUpaiy:
-            print(f'Siz {tigis}$ utyp aldynyz')
-            aqsha += tigis
+            print(f'Сіз {stavka}$ ұтып алдыңыз')
+            aqsha += stavka
         elif oiynshyUpaiy == dilerUpaiy:
-            print("Ten boldy, tigis aqshasy sizge qaitarylady")
+            print("Тең болды. Тіккен ақшаңыз сізге қайтарылады")
 
-        input('Zhalgastyru ushin ENTER pernesin basynyz...')
+        input('Жалғастыру үшін Enter пернесін басыңыз...')
         print('\n\n')
 
 
-def tigistiQabyldau(maxTigis):
+def stavkanyQabyldau(maxTigis):
     while True:
         print(f'Неше ақша тігіске қоясыз? (1-{maxTigis}, немесе QUIT)')
-        tigis = input('> ').upper().strip()
-        if tigis == 'QUIT':
+        stavka = input('> ').upper().strip()
+        if stavka == 'QUIT':
             print('Ойын үшін рахмет')
             sys.exit()
 
-        if not tigis.isdecimal():
+        if not stavka.isdecimal():
             continue
 
-        tigis = int(tigis)
-        if 1 <= tigis <= maxTigis:
-            return tigis
+        stavka = int(stavka)
+        if 1 <= stavka <= maxTigis:
+            return stavka
         
 
-def kalodaAlu():
+def kartaKolodasy():
     koloda = []
     for mast in (JUREK, QIYQ, QARGA, SHYBYN):
         for rank in range(2, 11):
@@ -111,13 +111,13 @@ def kalodaAlu():
 def qoldyKorsetu(oiynshyQoly, dilerQoly, dilerQolynKorsetu):
     print()
     if dilerQolynKorsetu:
-        print('DILER:', qolUpaiynAlu(dilerQoly))
+        print('ДИЛЕР:', qolUpaiynAlu(dilerQoly))
         kartalardyKorsetu(dilerQoly)
     else:
-        print('DILER: ???')
+        print('ДИЛЕР: ???')
         kartalardyKorsetu([KARTA_ARTY] + dilerQoly[1:])
 
-    print('OIYNSHY:', qolUpaiynAlu(oiynshyQoly))
+    print('ОЙЫНШЫ:', qolUpaiynAlu(oiynshyQoly))
     kartalardyKorsetu(oiynshyQoly)
 
 def qolUpaiynAlu(kartalar):
