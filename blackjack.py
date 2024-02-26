@@ -11,18 +11,18 @@ def main():
     aqsha = 5000
     while True: 
         if aqsha <= 0:
-            print("Sizdin aqshanyz bitti!")
-            print("Qumar oiyndy shyn omirde, shyn aqshaga oinamanyz")
-            print("Oiyn ushin rahmet!")
+            print("Сіздің қаражатыңыз бітті!")
+            print("Құмар ойынды шын өмірде ойнамаңыз!")
+            print("Ойын үшін рахмет!")
             sys.exit()
-        print('Tigis:', aqsha)
-        tigis = tigistiAlu(aqsha)
+        print('Сіздің қаражатыңыз:', aqsha)
+        tigis = tigistiQabyldau(aqsha)
 
         koloda = kalodaAlu()
         dilerQoly = [koloda.pop(), koloda.pop()]
         oiynshyQoly = [koloda.pop(), koloda.pop()]
 
-        print('Tigis:', tigis)
+        print('Сіз тіккен ақша:', tigis)
         while True:
             qoldyKorsetu(oiynshyQoly, dilerQoly, False)
             print()
@@ -33,7 +33,7 @@ def main():
             juris = juristiAlu(oiynshyQoly, aqsha - tigis)
 
             if juris == 'D':
-                qosyumshaTigis = tigistiAlu(min(tigis, (aqsha - tigis)))
+                qosyumshaTigis = tigistiQabyldau(min(tigis, (aqsha - tigis)))
                 tigis += qosyumshaTigis
                 print(f'Tigis {tigis}-ke ulgaityldy')
                 print('Tigis:', tigis)
@@ -58,7 +58,7 @@ def main():
 
                 if qolUpaiynAlu(dilerQoly) > 21:
                     break
-                input('Jalgastyru ushin ENTER pernesin basynyz...')
+                input('Жалғастыру үшін Enter пернесін басыңыз...')
                 print('\n\n')
 
         qoldyKorsetu(oiynshyQoly, dilerQoly, True)
@@ -82,12 +82,12 @@ def main():
         print('\n\n')
 
 
-def tigistiAlu(maxTigis):
+def tigistiQabyldau(maxTigis):
     while True:
-        print(f'Neshe aqsha tigesiz? (1-{maxTigis}, nemese QUIT)')
+        print(f'Неше ақша тігіске қоясыз? (1-{maxTigis}, немесе QUIT)')
         tigis = input('> ').upper().strip()
         if tigis == 'QUIT':
-            print('Oiyn ushin rahmet')
+            print('Ойын үшін рахмет')
             sys.exit()
 
         if not tigis.isdecimal():
@@ -146,14 +146,14 @@ def kartalardyKorsetu(kartalar):
     for i, karta in enumerate(kartalar):
         qatarlar[0] += ' ___ '
         if karta == KARTA_ARTY:
-            qatarlar[1] += '|##_| '
-            qatarlar[2] += '|###| '
-            qatarlar[3] += '|_##| '
+            qatarlar[1] += '|##_|'
+            qatarlar[2] += '|###|'
+            qatarlar[3] += '|_##|'
         else: 
             rank, mast = karta
-            qatarlar[1] += '|{} |'.format(rank.ljust(2))
-            qatarlar[2] += '| {} |'.format(mast)
-            qatarlar[3] += '|_{}|'.format(rank.rjust(2, '_'))
+            qatarlar[1] += f'|{rank.ljust(2)} |'
+            qatarlar[2] += f'| {mast} |'
+            qatarlar[3] += f'|_{rank.rjust(2, '_')}|'
 
 
     for qatar in qatarlar:
