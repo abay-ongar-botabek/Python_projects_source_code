@@ -12,16 +12,55 @@ def main():
 
     koloda = kartaKolodasy()
 
-    dilerQoly = (koloda.pop(), koloda.pop(), koloda.pop(), koloda.pop())
-    oiynshyQoly = (koloda.pop(), koloda.pop(), koloda.pop(), koloda.pop())
+    dilerQoly = (koloda.pop(), koloda.pop())
+    oiynshyQoly = (koloda.pop(), koloda.pop())
 
+    
+
+    while True:
+        print('Сізде бар қаражат: ', aqsha)
+        
+        if aqsha <= 0:
+            print('Бұл бағдарламалауды үйрететін ойын.')
+            print('Шын өмірде құмар ойын ойнамаңыз')
+            break
+
+        stavkaKolemi = stavkaQabyldau(aqsha)
+        aqsha -= stavkaKolemi
+        print(aqsha)
+
+        dilerQoly = (koloda.pop(), koloda.pop())
+        oiynshyQoly = (koloda.pop(), koloda.pop())
+
+        qoldyKorsetu(dilerQoly, oiynshyQoly)
+        continue
+
+        
+def qoldyKorsetu(dilerQoly, oiynshyQoly):
     dilerUpaiy = upaidySanau(dilerQoly)
     oiynshyUpaiy = upaidySanau(oiynshyQoly)
 
-    print(f'Дилер ұпайы {dilerUpaiy} және қолы:')
+    print('Дилер ұпайы:', dilerUpaiy)
     kartaSuretinSalu(dilerQoly)
-    print(f'Ойыншы ұпайы {oiynshyUpaiy} және қолы')
+    print('Ойыншы ұпайы:', oiynshyUpaiy)
     kartaSuretinSalu(oiynshyQoly)
+
+def stavkaQabyldau(maximaldiStavka):
+    while True:
+        print('Неше ақша ставка қоясыз?')
+        stavka = input('> ').strip()   
+        
+        stavka = int(stavka)
+        if stavka > maximaldiStavka:
+            print(f'Сізде бар қаражат {maximaldiStavka}. Одан артық қоя алмайсыз')
+            continue
+        stavka = str(stavka)
+        if not stavka.isdecimal():
+            continue
+
+        stavka = int(stavka)
+        return stavka
+
 
 def upaidySanau(qoldagyKarta):
     upai = 0
