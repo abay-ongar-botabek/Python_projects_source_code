@@ -73,12 +73,7 @@ def main():
 
         print('Ойынды жалғастыру үшін ENTER пернесін басыңыз.')
 
-        qoldyKorsetu(dilerQoly, oiynshyQoly, True)
-        
-
-
-
-            
+        qoldyKorsetu(dilerQoly, oiynshyQoly, True)           
             
               
 
