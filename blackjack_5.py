@@ -14,11 +14,20 @@ def main():
     
     qoldyKorsetu(dilerQoly, oiynshyQoly)
 
+def upaidySanau(qoldagyKarta):
+    upai = 0
+    for rank, mast in qoldagyKarta:
+        if rank in ('2', '3', '4', '5', '6', '7', '8', '9', '10'):
+            rank = int(rank)
+            upai += rank
+    return upai
     
 def qoldyKorsetu(dilerQoly, oiynshyQoly):
-    print('Дилер қолы:')
+    dilerUpaiy = upaidySanau(dilerQoly)
+    oiynshyUpaiy = upaidySanau(oiynshyQoly)
+    print(f'Дилер қолы: {dilerUpaiy} ұпай')
     kartaSuretinSalu(dilerQoly)
-    print('Ойыншы қолы:')
+    print(f'Ойыншы қолы: {oiynshyUpaiy} ұпай')
     kartaSuretinSalu(oiynshyQoly)
 
 def kartaSuretinSalu(kartalar):
