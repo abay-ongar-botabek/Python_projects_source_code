@@ -9,12 +9,22 @@ JASYRYN_KARTA = 'jabyq_karta'
 
 def main():
     aqsha = 5000
-
+    print(f'Сізде бар қаражат: {aqsha} теңге.')
     koloda = kartaKolodasy()
     dilerQoly = [koloda.pop(), koloda.pop()]
     oiynshyQoly = [koloda.pop(), koloda.pop()]
-    
-    qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+    qoldyKorsetu(dilerQoly, oiynshyQoly, True)
+
+    while True:
+        
+        stavkaQuny = stavkaQabyldau()
+        stavkaQuny = int(stavkaQuny)
+
+        
+
+def stavkaQabyldau():
+    stavka = input('неше қоясыз? > ')
+    return stavka
 
 def upaidySanau(qoldagyKarta):
     upai = 0
