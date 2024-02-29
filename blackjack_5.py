@@ -17,14 +17,20 @@ def main():
 
     while True:
         
-        stavkaQuny = stavkaQabyldau()
-        stavkaQuny = int(stavkaQuny)
+        stavkaQuny = stavkaQabyldau(aqsha)
+        aqsha -= stavkaQuny
+        print(aqsha)
 
+    
         
 
-def stavkaQabyldau():
-    stavka = input('неше қоясыз? > ')
-    return stavka
+def stavkaQabyldau(maximaldyStavka):
+    while True:
+        stavka = input('неше қоясыз? > ')
+        if not stavka.isdecimal() and stavka > maximaldyStavka:
+            continue
+        stavka = int(stavka)
+        return stavka
 
 def upaidySanau(qoldagyKarta):
     upai = 0
