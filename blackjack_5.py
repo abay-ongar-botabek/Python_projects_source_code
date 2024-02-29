@@ -9,8 +9,8 @@ def main():
     aqsha = 5000
 
     koloda = kartaKolodasy()
-    dilerQoly = [koloda.pop(), koloda.pop()]
-    oiynshyQoly = [koloda.pop(), koloda.pop()]
+    dilerQoly = [koloda.pop(), koloda.pop(), koloda.pop()]
+    oiynshyQoly = [koloda.pop(), koloda.pop(), koloda.pop()]
     
     qoldyKorsetu(dilerQoly, oiynshyQoly)
 
@@ -20,6 +20,14 @@ def upaidySanau(qoldagyKarta):
         if rank in ('2', '3', '4', '5', '6', '7', '8', '9', '10'):
             rank = int(rank)
             upai += rank
+        elif rank in ('В', 'Д', 'К'):
+            upai += 10
+
+    for rank, mast in qoldagyKarta:
+        if rank == 'Т' and upai < 10:
+            upai += 11
+        elif rank == 'Т' and upai > 10:
+            upai += 1
     return upai
     
 def qoldyKorsetu(dilerQoly, oiynshyQoly):
