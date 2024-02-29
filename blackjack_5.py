@@ -8,20 +8,27 @@ SHYBYN = chr(9827)
 def main():
     aqsha = 5000
 
-    kartalarKolodasy = kartaKolodasy()
-    birKarta = kartalarKolodasy.pop()
-    print(birKarta)
-    kartaSuretinSalu(birKarta)
+    koloda = kartaKolodasy()
+    dilerQoly = [koloda.pop(), koloda.pop()]
+    oiynshyQoly = [koloda.pop(), koloda.pop()]
+    
+    qoldyKorsetu(dilerQoly, oiynshyQoly)
+
+    
+def qoldyKorsetu(dilerQoly, oiynshyQoly):
+    print('Дилер қолы:')
+    kartaSuretinSalu(dilerQoly)
+    print('Ойыншы қолы:')
+    kartaSuretinSalu(oiynshyQoly)
 
 def kartaSuretinSalu(kartalar):
     qatarlar = ['', '', '', '', '']
-    rank = kartalar[0]
-    mast = kartalar[1]
-    for i in range(len(kartalar)):
-        qatarlar[0] = ' ___ '
-        qatarlar[1] = f'|{rank.ljust(3, ' ')}|'
-        qatarlar[2] = f'| {mast} |'
-        qatarlar[3] = f'|{rank.rjust(3, '_')}|'
+    for i, karta in enumerate(kartalar):
+        rank, mast = karta
+        qatarlar[0] += ' ___ '
+        qatarlar[1] += f'|{rank.ljust(3, ' ')}|'
+        qatarlar[2] += f'| {mast} |'
+        qatarlar[3] += f'|{rank.rjust(3, '_')}|'
     for qatar in qatarlar:
         print(qatar)
 
