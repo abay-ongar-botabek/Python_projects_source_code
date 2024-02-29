@@ -8,16 +8,11 @@ SHYBYN = chr(9827)
 KARTA_ARTY = 'backside'
 
 def main():
-    aqsha = 5000 #теңге
-
-    koloda = kartaKolodasy()
-
-    dilerQoly = (koloda.pop(), koloda.pop())
-    oiynshyQoly = (koloda.pop(), koloda.pop())
-
-    
+    aqsha = 5000 #теңге   
 
     while True:
+        koloda = kartaKolodasy()
+
         print('Сізде бар қаражат: ', aqsha)
         
         if aqsha <= 0:
@@ -50,15 +45,13 @@ def stavkaQabyldau(maximaldiStavka):
         print('Неше ақша ставка қоясыз?')
         stavka = input('> ').strip()   
         
-        stavka = int(stavka)
-        if stavka > maximaldiStavka:
-            print(f'Сізде бар қаражат {maximaldiStavka}. Одан артық қоя алмайсыз')
-            continue
-        stavka = str(stavka)
         if not stavka.isdecimal():
             continue
 
         stavka = int(stavka)
+        if stavka > maximaldiStavka:
+            print(f'Сізде бар қаражат {maximaldiStavka}. Одан артық қоя алмайсыз.')
+            continue
         return stavka
 
 
