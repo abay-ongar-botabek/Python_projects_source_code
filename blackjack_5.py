@@ -5,14 +5,16 @@ QIYQ = chr(9830)
 QARGA = chr(9824)
 SHYBYN = chr(9827)
 
+KARTA_ARTY = 'backside'
+
 def main():
     aqsha = 5000
 
     koloda = kartaKolodasy()
-    dilerQoly = [koloda.pop(), koloda.pop(), koloda.pop()]
-    oiynshyQoly = [koloda.pop(), koloda.pop(), koloda.pop()]
+    dilerQoly = [koloda.pop(), koloda.pop()]
+    oiynshyQoly = [koloda.pop(), koloda.pop()]
     
-    qoldyKorsetu(dilerQoly, oiynshyQoly)
+    qoldyKorsetu(dilerQoly, oiynshyQoly, True)
 
 def upaidySanau(qoldagyKarta):
     upai = 0
@@ -30,22 +32,31 @@ def upaidySanau(qoldagyKarta):
             upai += 1
     return upai
     
-def qoldyKorsetu(dilerQoly, oiynshyQoly):
+def qoldyKorsetu(dilerQoly, oiynshyQoly, dilerQolynKorsetu):
     dilerUpaiy = upaidySanau(dilerQoly)
+    if KARTA_ARTY:
+        print('Дилер қолы: ???')
+        kartaSuretinSalu([KARTA_ARTY] + dilerQoly[1:])
+    else:
+        print(f'Дилер қолы: {dilerUpaiy} ұпай')
+        kartaSuretinSalu(dilerQoly)
     oiynshyUpaiy = upaidySanau(oiynshyQoly)
-    print(f'Дилер қолы: {dilerUpaiy} ұпай')
-    kartaSuretinSalu(dilerQoly)
     print(f'Ойыншы қолы: {oiynshyUpaiy} ұпай')
     kartaSuretinSalu(oiynshyQoly)
 
 def kartaSuretinSalu(kartalar):
     qatarlar = ['', '', '', '', '']
     for i, karta in enumerate(kartalar):
-        rank, mast = karta
         qatarlar[0] += ' ___ '
-        qatarlar[1] += f'|{rank.ljust(3, ' ')}|'
-        qatarlar[2] += f'| {mast} |'
-        qatarlar[3] += f'|{rank.rjust(3, '_')}|'
+        if karta == KARTA_ARTY:
+            qatarlar[1] += '|#  |'
+            qatarlar[2] += '| ##|'
+            qatarlar[3] += '|__#|'
+        else:
+            rank, mast = karta
+            qatarlar[1] += f'|{rank.ljust(3, ' ')}|'
+            qatarlar[2] += f'| {mast} |'
+            qatarlar[3] += f'|{rank.rjust(3, '_')}|'
     for qatar in qatarlar:
         print(qatar)
 
