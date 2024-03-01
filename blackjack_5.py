@@ -41,8 +41,12 @@ def main():
             
             if juris == 'S':
                 qoldyKorsetu(dilerQoly, oiynshyQoly, False)
-                if upaidySanau(dilerQoly) <= 17:
-                    dilerQoly.append(koloda.pop())
+                while True:
+                    if upaidySanau(dilerQoly) < 17:
+                        dilerQoly.append(koloda.pop())
+                        continue
+                    else:
+                        break
                     
 
             if upaidySanau(dilerQoly) > 21:
@@ -59,6 +63,10 @@ def main():
                 qoldyKorsetu(dilerQoly, oiynshyQoly, False)
                 aqsha += stavkaQuny
                 print(f'Сіз {stavkaQuny} теңге ұтып алдыңыз')
+                break
+            elif upaidySanau(dilerQoly) == upaidySanau(oiynshyQoly):
+                qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+                print('Тең болды. Қойылған ставка сізге қайтарылады')
                 break
 
 
