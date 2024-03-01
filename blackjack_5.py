@@ -9,25 +9,74 @@ JASYRYN_KARTA = 'jabyq_karta'
 
 def main():
     aqsha = 5000
-    print(f'Сізде бар қаражат: {aqsha} теңге.')
-    koloda = kartaKolodasy()
-    dilerQoly = [koloda.pop(), koloda.pop()]
-    oiynshyQoly = [koloda.pop(), koloda.pop()]
-    qoldyKorsetu(dilerQoly, oiynshyQoly, True)
 
     while True:
         
+        print(f'Сізде бар қаражат: {aqsha} теңге.')
         stavkaQuny = stavkaQabyldau(aqsha)
-        aqsha -= stavkaQuny
-        print(aqsha)
-
-    
+        koloda = kartaKolodasy()
+        dilerQoly = [koloda.pop(), koloda.pop()]
+        oiynshyQoly = [koloda.pop(), koloda.pop()]
+        qoldyKorsetu(dilerQoly, oiynshyQoly, True)
         
+        
+        while True:
+            juris = juristiAlu()
+
+            if upaidySanau(oiynshyQoly) > 21:
+                print('Сіз 21-ден асып кеттіп, ұтылып қалдыңыз')
+                aqsha -= int(stavkaQuny)
+                break
+            
+            if juris == 'A':
+                oiynshyQoly.append(koloda.pop())
+                qoldyKorsetu(dilerQoly, oiynshyQoly, True)
+                if upaidySanau(oiynshyQoly) < 21:
+                    continue
+                elif upaidySanau(oiynshyQoly) > 21:
+                    print('Сіз 21-ден асып кеттіп, ұтылып қалдыңыз')
+                    aqsha -= int(stavkaQuny)
+                    break
+
+            
+            if juris == 'S':
+                qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+                if upaidySanau(dilerQoly) <= 17:
+                    dilerQoly.append(koloda.pop())
+                    
+
+            if upaidySanau(dilerQoly) > 21:
+                qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+                aqsha += stavkaQuny
+                print(f'Дилер асып кетті. Сіз {stavkaQuny} ұтып алдыңыз')
+                break
+            elif upaidySanau(dilerQoly) > upaidySanau(oiynshyQoly):
+                qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+                aqsha -= stavkaQuny
+                print('Дилер ұтты.')
+                break
+            elif upaidySanau(dilerQoly) < upaidySanau(oiynshyQoly):
+                qoldyKorsetu(dilerQoly, oiynshyQoly, False)
+                aqsha += stavkaQuny
+                print(f'Сіз {stavkaQuny} теңге ұтып алдыңыз')
+                break
+
+
+        
+
+
+def juristiAlu():
+    juris = input('Карта (A)lu үшін А пернесін басыңыз, тоқтау үшін (S)top S пернесін басыңыз: > ').upper().strip()
+    if juris == 'A':
+        return juris
+    if juris == 'S':
+        return juris
+       
 
 def stavkaQabyldau(maximaldyStavka):
     while True:
         stavka = input('неше қоясыз? > ')
-        if not stavka.isdecimal() and stavka > maximaldyStavka:
+        if not stavka.isdecimal():
             continue
         stavka = int(stavka)
         return stavka
