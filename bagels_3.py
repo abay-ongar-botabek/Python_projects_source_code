@@ -15,9 +15,14 @@ def main():
             print(f'Жасырын сан {jasyrynSan} болатын')
             print('Сіз жасырын санды таптыңыз: ')
 
+        komekAlu = firmoPico(jasyrynSan, oiynshyBoljaganSan)
+        print(komekAlu)
+
+    print(jasyrynSan)
+
+
 def firmoPico (jasyrynSan, oiynshyBoljaganSan):
-    if jasyrynSan == oiynshyBoljaganSan:
-        print('Жарайсыз! Сіз жасырын санды таптыңыз!')
+    
     komek = []
     for i in range(len(jasyrynSan)):
         if oiynshyBoljaganSan[i] == jasyrynSan[i]:
