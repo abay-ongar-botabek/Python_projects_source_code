@@ -4,15 +4,24 @@ MAX_SANDAR = 3
 
 def main():
     jasyrynSan = jasyrynSandyAlu()
-    print(jasyrynSan)
+    qoldanushyEngizgenSan = ''
+    while True:
+        qoldanushyEngizgenSan = input('Санды енгізіңіз: >')
+        if jasyrynSan == qoldanushyEngizgenSan:
+            print('Сіз жасырын санды таптыңыз.')
+        else:
+            print('Тағы байқап көріңіз')
+    
 
 def jasyrynSandyAlu():
     jalpySandarTizimi = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     random.shuffle(jalpySandarTizimi)
     jasyrynSandar = []
+    jasyrynSandarTirkes = ''
     for i in range(MAX_SANDAR):
         jasyrynSandar.append(jalpySandarTizimi[i])
-    return jasyrynSandar
+        jasyrynSandarTirkes += jalpySandarTizimi[i]
+    return jasyrynSandarTirkes
 
 
 if __name__ == '__main__':
