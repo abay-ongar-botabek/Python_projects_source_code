@@ -1,6 +1,6 @@
 import random
 
-JASYRYN_SANDAR_CIFRY = 1
+JASYRYN_SANDAR_CIFRY = 3
 BERILETIN_MUMKINDIK_SANY = 10
 
 def main():
@@ -15,6 +15,20 @@ def main():
             print(f'Жасырын сан {jasyrynSan} болатын')
             print('Сіз жасырын санды таптыңыз: ')
 
+def firmoPico (jasyrynSan, oiynshyBoljaganSan):
+    if jasyrynSan == oiynshyBoljaganSan:
+        print('Жарайсыз! Сіз жасырын санды таптыңыз!')
+    komek = []
+    for i in range(len(jasyrynSan)):
+        if oiynshyBoljaganSan[i] == jasyrynSan[i]:
+            komek.append('Fermi')
+        elif oiynshyBoljaganSan[i] in jasyrynSan:
+            komek.append('Pico')
+    if len(komek) == 0:
+        return 'Bagels'
+    else:
+        return ' '.join(komek)
+    
 
 def jasyrynSanBeru():
     jasyrynSan = []
