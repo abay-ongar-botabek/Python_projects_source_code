@@ -5,17 +5,18 @@ MUMKINDIKTER_SANY = 10
 
 def main():
     while True:
+        jasyrynSan = jasyrynSandyAlu()
         print('Мен 3 цифрлы сан ойладым. Тауып көр')
         oiynshyZhasaganMumkindikSany = 0
 
         while oiynshyZhasaganMumkindikSany < MUMKINDIKTER_SANY:
-            print(f'Болжам #{oiynshyZhasaganMumkindikSany + 1}')
-            oiynshyBoljaganSan = input('> ')
-            print(oiynshyBoljaganSan)
-            jasyrynSan = jasyrynSandyAlu()
-            if oiynshyBoljaganSan == jasyrynSan:
-                print('Жарайсыз. Сіз жасырын санды таптыңыз!')
-                break
+            oiynshyBoljaganSan = ''
+            while len(oiynshyBoljaganSan) != MAX_SANDAR or not oiynshyBoljaganSan.isdecimal():
+                print('Болжам # {}'.format(oiynshyZhasaganMumkindikSany + 1))
+                oiynshyBoljaganSan = input('> ')
+
+            komek = tuspaldapKomekBeru(oiynshyBoljaganSan, jasyrynSan)
+            print(komek)
 
             oiynshyZhasaganMumkindikSany += 1
 
@@ -39,9 +40,10 @@ def tuspaldapKomekBeru(qoldanushyEngizgenSan, jasyrynSan):
             komekHabarlama.append('Fermi')
         elif qoldanushyEngizgenSan[i] in jasyrynSan:
             komekHabarlama.append('Pico')
-        elif qoldanushyEngizgenSan[i] not in jasyrynSan:
-            komekHabarlama.append('Bagels')
-    return ' '.join(komekHabarlama)
+    if len(komekHabarlama) == 0:
+        return 'bagels'
+    else:
+        return ' '.join(komekHabarlama)
 
 def jasyrynSandyAlu():
     jalpySandarTizimi = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
