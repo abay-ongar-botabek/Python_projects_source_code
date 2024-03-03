@@ -13,7 +13,7 @@ def main():
         while jasalganBoljamSany <= MAX_BOLJAM:
             boljam = ''
             while len(boljam) != SAN_CIFRY or not boljam.isdecimal():
-                print('Болжам# {}'.format(jasalganBoljamSany))
+                print('Болжам #{}:'.format(jasalganBoljamSany))
                 boljam = input('> ')
             
             tuspalKomek = komekAlu(boljam, qupiaSan)
