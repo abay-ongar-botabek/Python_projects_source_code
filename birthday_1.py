@@ -19,6 +19,17 @@ def tuylganKunderAlu(tkSany):
     return tuylganKunder
 
 kezdoisoqTuylganKunderSany = int(jauap)
-tyuylganKunder = tuylganKunderAlu(kezdoisoqTuylganKunderSany)
-for i in range(len(tyuylganKunder)):
-    print(tyuylganKunder[i])
+# tyuylganKunder = tuylganKunderAlu(kezdoisoqTuylganKunderSany)
+# for i in range(len(tyuylganKunder)):
+#     print(tyuylganKunder[i])
+
+JUL_AILARY = ['Қаңтар', 'Ақпан', 'Наурыз', 'Сәуір', 'Мамыр', 'Маусым', 'Тамыз', 'Шілде', 'Қыркүйек', 'Қазан', 'Қараша', 'Желтоқсан']
+
+print(f'Міне {jauap} мысал туылған күндер.')
+tuylganKunder = tuylganKunderAlu(kezdoisoqTuylganKunderSany)
+for i, tuylganKun in enumerate(tuylganKunder):
+    if i != 0:
+        print(', ', end='')
+    jylAilary = JUL_AILARY[tuylganKun.month - 1]
+    kundiMatinmenJazu = f'{tuylganKun.day}-ші {jylAilary}'
+    print(kundiMatinmenJazu, end='')
